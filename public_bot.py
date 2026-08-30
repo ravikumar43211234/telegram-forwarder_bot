@@ -7,7 +7,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 # ==================== DUMMY WEB SERVER FOR RENDER ====================
-app_web = Flask('')
+app = Flask('')
 
 @app.route('/')
 def home():
@@ -15,7 +15,7 @@ def home():
 
 def run_web():
     port = int(os.environ.get("PORT", 8080))
-    app_web.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port)
 
 def keep_alive():
     t = Thread(target=run_web)
@@ -114,12 +114,12 @@ async def handle_user_message(update: Update, context: ContextTypes.DEFAULT_TYPE
         await status_msg.edit_text("❌ Link convert nahi ho paaya. Kripya valid shopping link bhejain.")
 
 if __name__ == '__main__':
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
+    tg_app = ApplicationBuilder().token(BOT_TOKEN).build()
     
-    app.add_handler(CommandHandler("start", start_command))
-    app.add_handler(CommandHandler("help", help_command))
-    app.add_handler(CommandHandler("channel", channel_command))
-    app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_user_message))
+    tg_app.add_handler(CommandHandler("start", start_command))
+    tg_app.add_handler(CommandHandler("help", help_command))
+    tg_app.add_handler(CommandHandler("channel", channel_command))
+    tg_app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_user_message))
     
     print("🤖 LootersGang Public Converter Bot is Live & Running...")
-    app.run_polling()
+    tg_app.run_polling()
