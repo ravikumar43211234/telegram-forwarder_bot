@@ -1,10 +1,32 @@
+import os
 import json
 import requests
+from threading import Thread
+from flask import Flask
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
+# ==================== DUMMY WEB SERVER FOR RENDER ====================
+app_web = Flask('')
+
+@app.route('/')
+def home():
+    return "🤖 LootersGang Public Converter Bot is Alive & Running!"
+
+def run_web():
+    port = int(os.environ.get("PORT", 8080))
+    app_web.run(host='0.0.0.0', port=port)
+
+def keep_alive():
+    t = Thread(target=run_web)
+    t.daemon = True
+    t.start()
+
+keep_alive()
+# =====================================================================
+
 # ==================== CONFIGURATION ====================
-BOT_TOKEN = "8750109986:AAEo_P9314F7Ns6q1X86snqeQebU6PyRDWg"
+BOT_TOKEN = "8750109986:AAGR1qkaQI1Tbw58x24VlAGyV11fhNAXXzQ"
 AFFILIATERS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTgxYTYyZGRlMTUxZTUyZDMyYjllNWEiLCJlYXJua2FybyI6IjU1NDQ0NDUiLCJpYXQiOjE3ODgwNDE4MTl9.3HqB-FNw5fTYENqQA6NzDUDt67QYoRkVGTz784-mDEk"
 
 BASE_URL = "https://ekaro-api.affiliaters.in/api/converter/public"
