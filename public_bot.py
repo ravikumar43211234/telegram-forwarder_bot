@@ -32,7 +32,7 @@ logging.basicConfig(
 )
 
 # Yahan apna Bot Token check kar lein
-BOT_TOKEN = "8750109986:AAEo_P9314F7Ns6q1X86snqeQebU6PyRDWg"  # Aapka bot token
+BOT_TOKEN = "8750109986:AAGR1qkaQI1Tbw58x24VlAGyV11fhNAXXzQ"  # Aapka bot token
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Hello! Mujhe koi bhi product link bhejo, main use affiliate link me convert kar dunga.")
