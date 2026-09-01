@@ -26,7 +26,9 @@ keep_alive()
 # =====================================================================
 
 # ==================== CONFIGURATION ====================
-BOT_TOKEN = "8750109986:AAGR1qkaQI1Tbw58x24VlAGyV11fhNAXXzQ"
+import os
+
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8750109986:AAH0vn3Y0VZHN3Y1BzHZJHuMOGgIKuTqWYk")
 AFFILIATERS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTgxYTYyZGRlMTUxZTUyZDMyYjllNWEiLCJlYXJua2FybyI6IjU1NDQ0NDUiLCJpYXQiOjE3ODgwNDE4MTl9.3HqB-FNw5fTYENqQA6NzDUDt67QYoRkVGTz784-mDEk"
 
 BASE_URL = "https://ekaro-api.affiliaters.in/api/converter/public"
